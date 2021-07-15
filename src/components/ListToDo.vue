@@ -9,11 +9,11 @@
                           <input type="checkbox" v-model="toDo.done" :checked="toDo.done" :value="toDo.done" v-on:change="updateToDo(toDo)" title="Marcar como concluído?" />
                       </span>
                   </div>
-                  <input type="text" class="form-control" :class="toDo.done?'todo_done' : '' " v-model="toDo.name" @click="toDo.done? '' :editToDo(toDo)" @keypress="toDo.editind=true" @keyup.enter="updateToDo(toDo)" />
+                  <input type="text" class="form-control" :class="toDo.done?'todo_done' : '' " v-model="toDo.name" @click="toDo.done? '' :editToDo(toDo)" @keypress="toDo.editing=true" @keyup.enter="updateToDo(toDo)" />
               </div>
               <div class="input-group-append">
                   <div class="input-group-text">
-                      <span class="input-group-addon addon-left" title="Deletar Tarefa?">
+                      <span class="input-group-addon addon-left" v-on:click="deleteToDo(toDo.id)" title="Deletar Tarefa?">
                           X
                       </span>
                   </div>
@@ -66,8 +66,10 @@ export default {
 
         updateToDo(todo) {
             let id = todo.id;
-            this.$router.put(`/${id}`, todo).then(response => {
+            this.$http.put(`/${id}`, todo).then(response => {
                 console.log(response);
+            }).catch(error => {
+                console.log(error);
             })
         },
 

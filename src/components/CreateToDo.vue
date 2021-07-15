@@ -4,7 +4,7 @@
       <form class="sign-in" @submit.prevent>
           <div class="form-group todo_row">
               <input type="text" class="form-control" placeholder="Digite o Título" v-model="name" />
-              <textarea class="form-control" placeholder="Digite o Detalhe..."></textarea>
+              <textarea class="form-control" placeholder="Digite o Detalhe..." v-model="details"></textarea>
               <input type="submit" class="btn btn-primary" value="Salvar Tarefa" @click="addToDo()" />
           </div>
       </form>

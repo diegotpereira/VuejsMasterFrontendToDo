@@ -19,12 +19,20 @@ export default {
         return {
             id: "",
             name: "Carregando...",
+            details: "Loading...",
             done: false,
             doneLoading: false
         }
     },
 
-    mounted: {
+    mounted(){
+        console.log("Editar Montado.")
+        this.id = this.$route.params.id;
+        console.log("Id encontrado: + this.id");
+        this.fetchToDo(this.id);
+
+    },
+    methods: {
         fetchToDo(id) {
             this.$http
                 .get(`/${id}`)
